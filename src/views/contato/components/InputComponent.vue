@@ -1,13 +1,26 @@
 <template>
-    <input  :placeholder="placeholder" type="text" />
+  <input
+    :placeholder="placeholder"
+    :type="type"
+    :autocomplete="autocomplete"
+    :aria-label="placeholder"
+  />
 </template>
 
 <script setup>
 defineProps({
-  placeholder:{
+  placeholder: {
     type: String,
     required: true,
-  }
+  },
+  type: {
+    type: String,
+    default: 'text',
+  },
+  autocomplete: {
+    type: String,
+    default: 'off',
+  },
 })
 </script>
 
@@ -18,17 +31,16 @@ input {
   border: none;
   border-bottom: 1px solid var(--color-border);
   width: 100%;
-  font-size: 15px;
   padding-bottom: 10px;
   color: var(--color-text);
   background-color: transparent;
-  font-family: Poppins;
+  font-family: inherit;
   transition: 0.2s ease-in-out;
   font-size: 16px;
 }
 
 input::placeholder {
-  font-family: Poppins;
+  font-family: inherit;
   color: var(--color-muted);
   font-weight: 300;
   font-size: 16px;

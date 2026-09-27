@@ -1,35 +1,38 @@
 <template>
-  <textarea placeholder="Descreva sua ideia ou projeto aqui, com todos os detalhes necessários." name="" id=""></textarea>
+  <textarea
+    name="message"
+    aria-label="Descreva sua ideia ou projeto"
+    placeholder="Descreva sua ideia ou projeto aqui, com todos os detalhes necessários."
+    rows="4"
+  ></textarea>
 </template>
 
 <style scoped>
 textarea {
   font-weight: 300;
   outline: none;
-  padding: 10px 0 0px 0;
+  padding: 10px 0 0;
   border: none;
   border-bottom: 1px solid var(--color-border);
   width: 100%;
-  font-size: 15px;
-  line-height: 1;
   color: var(--color-text);
   background-color: transparent;
   resize: none;
-  font-family: Poppins;
+  font-family: inherit;
   transition: 0.2s ease-in-out;
   font-size: 16px;
-  overflow: hidden;
+  line-height: 1.5;
 }
 
 textarea::placeholder {
-  font-family: Poppins;
+  font-family: inherit;
   color: var(--color-muted);
   opacity: 1;
   font-size: 16px;
   transition: opacity 0.2s ease;
 }
 
-textarea:focus::placeholder{
+textarea:focus::placeholder {
   opacity: 0;
 }
 
@@ -43,5 +46,4 @@ textarea:focus {
     padding-bottom: 10px;
   }
 }
-
 </style>

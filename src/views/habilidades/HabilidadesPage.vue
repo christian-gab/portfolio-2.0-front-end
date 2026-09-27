@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <h2>Habilidades</h2>
-    <div class="grid-habiidades">
-      <template v-for="(habilidade, index) in habilidades" :key="index">
+    <div class="grid-habilidades">
+      <template v-for="habilidade in habilidades" :key="habilidade.name">
         <Habilidade v-if="habilidade.icon" :icon="habilidade.icon" :name="habilidade.name" />
         <Habilidade v-else-if="habilidade.className" :name="habilidade.name">
           <i :class="habilidade.className"></i>

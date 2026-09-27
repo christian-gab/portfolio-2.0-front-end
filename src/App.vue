@@ -7,17 +7,17 @@
       <InicioPage />
     </section>
 
-  <section id="sobre">
-    <SobrePage />
-  </section>
+    <section id="sobre">
+      <SobrePage />
+    </section>
 
-  <section id="habilidades">
-    <HabilidadesPage />
-  </section>
+    <section id="habilidades">
+      <HabilidadesPage />
+    </section>
 
-  <section id="projetos">
-    <ProjetosPage />
-  </section>
+    <section id="projetos">
+      <ProjetosPage />
+    </section>
 
     <section id="contato">
       <ContatoPage />

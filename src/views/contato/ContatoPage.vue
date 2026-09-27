@@ -7,8 +7,8 @@
         conversar!
       </p>
       <div class="email">
-        <InputComponent placeholder="Seu nome" />
-        <InputComponent placeholder="Seu e-mail" />
+        <InputComponent placeholder="Seu nome" autocomplete="name" />
+        <InputComponent placeholder="Seu e-mail" type="email" autocomplete="email" />
       </div>
       <div class="container-textarea">
         <TextAreaComponent />
@@ -19,7 +19,7 @@
           :key="social.name"
           :href="social.href"
           :icon="social.icon"
-          @click="openLink(social.href)"
+          :name="social.name"
         />
       </div>
     </div>
@@ -30,30 +30,7 @@
 import AboutMedias from '../sobre/components/AboutMedias.vue'
 import TextAreaComponent from './components/TextAreaComponent.vue'
 import InputComponent from './components/InputComponent.vue'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
-const socialMedias = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/christian-gab',
-    icon: faGithub,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/christiangdev',
-    icon: faLinkedin,
-  },
-  {
-    name: 'Email',
-    href: 'https://mail.google.com/mail/?view=cm&to=christiandeveloper123@gmail.com',
-    icon: faEnvelope,
-  },
-]
-
-const openLink = (href) => {
-  window.open(href, '_blank')
-}
+import socialMedias from '@/data/socialMedias'
 </script>
 
 <style scoped src="../contato/contato.css"></style>

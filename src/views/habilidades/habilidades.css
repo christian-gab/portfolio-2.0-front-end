@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-.grid-habiidades {
+.grid-habilidades {
   display: grid;
   grid-template-columns: repeat(6, minmax(90px, 1fr));
   gap: 10px;
@@ -43,13 +43,13 @@
 }
 
 @media (max-width: 1023px) {
-  .grid-habiidades {
+  .grid-habilidades {
     grid-template-columns: repeat(3, minmax(90px, 1fr));
   }
 }
 
 @media (max-width: 767px) {
-  .grid-habiidades {
+  .grid-habilidades {
     grid-template-columns: repeat(2, minmax(90px, 1fr));
   }
 }

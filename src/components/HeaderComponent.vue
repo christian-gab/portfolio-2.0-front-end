@@ -2,8 +2,10 @@
   <header :class="border">
     <nav class="desktop-nav" aria-label="Navegação principal">
       <ul>
-        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
-          {{ item.label }}
+        <li v-for="item in menuItems" :key="item.id">
+          <button class="nav-link" type="button" @click="scrollToSection(item.id)">
+            {{ item.label }}
+          </button>
         </li>
 
         <li class="theme-toggle">
@@ -45,8 +47,10 @@
       v-show="isMenuOpen"
     >
       <ul>
-        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
-          {{ item.label }}
+        <li v-for="item in menuItems" :key="item.id">
+          <button class="nav-link" type="button" @click="scrollToSection(item.id)">
+            {{ item.label }}
+          </button>
         </li>
 
         <li class="theme-toggle mobile-theme-toggle">
@@ -106,15 +110,28 @@ ul {
   padding: 0;
 }
 
-li {
+.nav-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
   white-space: nowrap;
 }
 
-li:hover {
+.nav-link:hover,
+.nav-link:focus-visible {
   color: var(--color-primary);
+}
+
+.nav-link:focus-visible,
+.toggle:focus-visible,
+.hamburger-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 .theme-toggle {
@@ -128,7 +145,7 @@ li:hover {
   padding: 3px;
   border: none;
   border-radius: 999px;
-  background-color: #ddd;
+  background-color: var(--color-toggle-track);
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease;
@@ -149,9 +166,11 @@ li:hover {
 .icon-moon {
   width: 11px;
   height: 11px;
-  color: #fff;
+  color: var(--color-toggle-icon);
   opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .toggle.active .icon-sun {
@@ -166,7 +185,7 @@ li:hover {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--color-toggle-thumb);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +200,7 @@ li:hover {
 }
 
 .toggle.active {
-  background-color: #333;
+  background-color: var(--color-toggle-active);
 }
 
 .toggle.active .toggle-circle {
@@ -300,6 +319,12 @@ header.border {
     font-size: 14px;
   }
 
+  .mobile-menu .nav-link {
+    width: 100%;
+    min-height: 48px;
+    text-align: left;
+  }
+
   .mobile-menu li:last-child {
     border-bottom: none;
   }
@@ -355,6 +380,7 @@ const scrollToSection = (id) => {
 }
 
 onMounted(() => {
+  handleScroll()
   window.addEventListener('scroll', handleScroll)
 })
 

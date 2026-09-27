@@ -20,7 +20,7 @@
             :key="social.name"
             :href="social.href"
             :icon="social.icon"
-            @click="openLink(social.href)"
+            :name="social.name"
           />
         </div>
       </div>
@@ -32,30 +32,7 @@
 import aboutAnimation from '@/assets/animation/aboutAnimation.json'
 import { Vue3Lottie } from 'vue3-lottie'
 import AboutMedias from './components/AboutMedias.vue'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
-const socialMedias = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/christian-gab',
-    icon: faGithub,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/christiangdev',
-    icon: faLinkedin,
-  },
-  {
-    name: 'Email',
-    href: 'https://mail.google.com/mail/?view=cm&to=christiandeveloper123@gmail.com',
-    icon: faEnvelope,
-  },
-]
-
-const openLink = (href) => {
-  window.open(href, '_blank')
-}
+import socialMedias from '@/data/socialMedias'
 </script>
 
 <style src="/src/views/sobre/sobre.css" scoped></style>

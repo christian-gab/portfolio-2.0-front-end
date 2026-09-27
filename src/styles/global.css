@@ -4,6 +4,11 @@
   --color-primary: #273da8;
   --color-secondary: #4353be;
   --color-tertiary: #9895ff;
+  --color-on-primary: #ffffff;
+  --color-toggle-track: #dddddd;
+  --color-toggle-active: #333333;
+  --color-toggle-thumb: #ffffff;
+  --color-toggle-icon: #ffffff;
   --color-background: #ffffff;
   --color-surface: #ffffff;
   --color-text: #202124;
@@ -13,6 +18,8 @@
 
 :root.dark {
   color-scheme: dark;
+  --color-toggle-track: #454a55;
+  --color-toggle-active: #596172;
   --color-background: #111318;
   --color-surface: #1b1e26;
   --color-text: #f1f2f5;
@@ -26,6 +33,12 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

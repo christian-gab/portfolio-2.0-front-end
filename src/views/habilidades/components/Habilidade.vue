@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :aria-label="name">
+  <div class="container" role="img" :aria-label="name">
     <div class="content">
       <slot v-if="!icon"></slot>
       <font-awesome-icon v-else class="icon" :icon="icon" />
@@ -10,9 +10,11 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'HabilidadeCard' })
+
 defineProps({
   icon: {
-    type: String,
+    type: [Object, Array],
     required: false,
     default: null,
   },
@@ -33,7 +35,9 @@ defineProps({
   border: 2px solid var(--color-border);
   border-radius: 4px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.082);
-  transition: ease 1s;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,13 +68,15 @@ defineProps({
   padding: 7px 12px;
   border-radius: 10px;
   background: var(--color-primary);
-  color: #ffffff;
+  color: var(--color-on-primary);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   white-space: nowrap;
   backdrop-filter: blur(6px);
-  transition: all 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .skill-name::before {
@@ -106,6 +112,6 @@ defineProps({
   width: 90px;
   height: 90px;
   color: var(--color-secondary);
-  transition: ease 1s;
+  transition: transform 0.25s ease;
 }
 </style>
