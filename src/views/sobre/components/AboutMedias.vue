@@ -22,7 +22,7 @@ defineProps({
 <style scoped>
 .container-social-media {
   border-radius: 4px;
-  border: 2px solid rgb(235, 235, 235);
+  border: 2px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;

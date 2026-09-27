@@ -8,11 +8,12 @@ textarea {
   outline: none;
   padding: 10px 0 0 0;
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--color-border);
   width: 100%;
   font-size: 15px;
   line-height: 1;
-  color: gray;
+  color: var(--color-text);
+  background-color: transparent;
   resize: none;
   font-family: Poppins;
   transition: 0.2s ease-in-out;
@@ -22,7 +23,7 @@ textarea {
 
 textarea::placeholder {
   font-family: Poppins;
-  color: gray;
+  color: var(--color-muted);
   opacity: 1;
   font-size: 16px;
   transition: opacity 0.2s ease;

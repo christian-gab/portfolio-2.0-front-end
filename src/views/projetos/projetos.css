@@ -42,7 +42,7 @@
 .image-project {
   width: 50%;
   height: 90%;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 4px;
   margin-left: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
@@ -51,7 +51,7 @@
 .image-project-small {
   width: 50%;
   height: 90%;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 4px;
   margin-left: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);

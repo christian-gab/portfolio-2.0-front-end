@@ -8,7 +8,6 @@
         com experiência profissional na criação e evolução de aplicações web modernas, utilizando
         Vue, React, Angular, TypeScript, JavaScript e Tailwind CSS. Foco em performance,
         acessibilidade, boas práticas e experiência do usuário.
-        <span class="destaque">UI/UX.</span>
       </p>
 
       <div class="social-medias">

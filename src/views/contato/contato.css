@@ -39,7 +39,7 @@
 }
 
 .contato p{
-  color: gray;
+  color: var(--color-muted);
   font-size: 20px;
   text-align: center;
   margin: 0;
