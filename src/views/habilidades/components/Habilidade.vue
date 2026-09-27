@@ -29,8 +29,8 @@ defineProps({
   position: relative;
   width: 160px;
   height: 160px;
-  background-color: rgba(248, 248, 248, 0.712);
-  border: 2px solid rgb(235, 235, 235);
+  background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  border: 2px solid var(--color-border);
   border-radius: 4px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.082);
   transition: ease 1s;
@@ -62,7 +62,7 @@ defineProps({
   transform: translate(-50%, 18px);
   opacity: 0;
   padding: 7px 12px;
-  border-radius: 999px;
+  border-radius: 10px;
   background: var(--color-primary);
   color: #ffffff;
   font-size: 11px;

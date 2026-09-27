@@ -4,10 +4,29 @@
   --color-primary: #273da8;
   --color-secondary: #4353be;
   --color-tertiary: #9895ff;
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #202124;
+  --color-muted: #686868;
+  --color-border: #e3e3e3;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --color-background: #111318;
+  --color-surface: #1b1e26;
+  --color-text: #f1f2f5;
+  --color-muted: #b3b7c2;
+  --color-border: #343844;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }

@@ -16,11 +16,12 @@ input{
   font-weight: 300;
   outline: none;
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--color-border);
   width: 50%;
   font-size: 15px;
   padding-bottom: 10px;
-  color: gray;
+  color: var(--color-text);
+  background-color: transparent;
   font-family: Poppins;
   transition: 0.2s ease-in-out;
   font-size: 16px;
@@ -28,6 +29,7 @@ input{
 
 input::placeholder{
   font-family: Poppins;
+  color: var(--color-muted);
   font-weight: 300;
   font-size: 16px;
   transition: opacity 0.2s ease;
