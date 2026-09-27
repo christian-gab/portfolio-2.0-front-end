@@ -11,14 +11,17 @@
         <div :class="{ prev, next }" class="projetos" :key="projetoAtual">
           <div
             class="image-project"
-            :class="{ 'image-project-small': currentProject.title === 'Virtual-R' }"
+            :class="{
+              'image-project-small': currentProject.title === 'Virtual-R',
+              'image-project-cards': currentProject.title === 'Jokes card',
+            }"
           >
             <Vue3Lottie
               :animationData="animacoes[currentProject.animation]"
               :loop="true"
               :autoPlay="true"
-              :width="currentProject.title === 'Virtual-R' ? '300px' : '100%'"
-              :height="currentProject.title === 'Virtual-R' ? '300px' : '100%'"
+              width="100%"
+              height="100%"
             />
           </div>
 

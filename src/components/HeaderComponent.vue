@@ -1,28 +1,77 @@
 <template>
   <header :class="border">
-    <ul>
-      <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
-        {{ item.label }}
-      </li>
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <ul>
+        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
+          {{ item.label }}
+        </li>
 
-      <li class="theme-toggle">
-        <button
-          class="toggle"
-          :class="{ active: isDark }"
-          @click="toggleTheme"
-          aria-label="Alternar tema"
-          :aria-pressed="isDark"
-        >
-          <span class="toggle-circle"> </span>
-        </button>
-      </li>
-    </ul>
+        <li class="theme-toggle">
+          <button
+            class="toggle"
+            :class="{ active: isDark }"
+            @click="toggleTheme"
+            aria-label="Alternar tema"
+            :aria-pressed="isDark"
+          >
+            <span class="toggle-icons" aria-hidden="true">
+              <font-awesome-icon class="icon-sun" :icon="themeIcons.sun" />
+              <font-awesome-icon class="icon-moon" :icon="themeIcons.moon" />
+            </span>
+            <span class="toggle-circle"></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      class="hamburger-button"
+      type="button"
+      :aria-label="isMenuOpen ? 'Fechar menu' : 'Abrir menu'"
+      :aria-expanded="isMenuOpen"
+      aria-controls="mobile-navigation"
+      @click="toggleMenu"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav
+      id="mobile-navigation"
+      class="mobile-menu"
+      :class="{ open: isMenuOpen }"
+      aria-label="Menu móvel"
+      v-show="isMenuOpen"
+    >
+      <ul>
+        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
+          {{ item.label }}
+        </li>
+
+        <li class="theme-toggle mobile-theme-toggle">
+          <button
+            class="toggle"
+            :class="{ active: isDark }"
+            @click="toggleTheme"
+            aria-label="Alternar tema"
+            :aria-pressed="isDark"
+          >
+            <span class="toggle-icons" aria-hidden="true">
+              <font-awesome-icon class="icon-sun" :icon="themeIcons.sun" />
+              <font-awesome-icon class="icon-moon" :icon="themeIcons.moon" />
+            </span>
+            <span class="toggle-circle"></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
 <style scoped>
 header {
-  width: 100vw;
+  width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
@@ -37,20 +86,31 @@ header {
     border-color 0.3s ease,
     box-shadow 0.3s ease;
   z-index: 1000;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 ul {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 24px;
   list-style: none;
-  margin-right: 48px;
+  margin: 0;
+  padding: 0;
 }
 
 li {
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 li:hover {
@@ -72,6 +132,34 @@ li:hover {
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.toggle-icons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  pointer-events: none;
+}
+
+.icon-sun,
+.icon-moon {
+  width: 11px;
+  height: 11px;
+  color: #fff;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toggle.active .icon-sun {
+  opacity: 0.4;
+}
+
+.toggle.active .icon-moon {
+  opacity: 1;
 }
 
 .toggle-circle {
@@ -87,7 +175,6 @@ li:hover {
   position: absolute;
   top: 3px;
   left: 3px;
-
   transition:
     transform 0.3s ease,
     background-color 0.3s ease;
@@ -109,14 +196,134 @@ li:hover {
 header.border {
   border-color: var(--color-border);
 }
+
+.hamburger-button {
+  display: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: transparent;
+  padding: 7px 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.hamburger-line {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-text);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  header {
+    height: 50px;
+    justify-content: flex-end;
+    padding: 0 16px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger-button {
+    display: flex;
+  }
+
+  .hamburger-button .hamburger-line {
+    transform-origin: center;
+  }
+
+  .hamburger-button[aria-expanded='true'] .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger-button[aria-expanded='true'] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-button[aria-expanded='true'] .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+    display: block;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+    overflow: hidden;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .mobile-menu li {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 14px;
+  }
+
+  .mobile-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-theme-toggle {
+    justify-content: flex-start;
+    padding: 12px 16px;
+  }
+}
 </style>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useTheme } from '@/composables/useTheme'
 
 const border = ref('')
+const isMenuOpen = ref(false)
 const { isDark, toggleTheme } = useTheme()
+
+const themeIcons = {
+  sun: faSun,
+  moon: faMoon,
+}
 
 const menuItems = [
   { label: 'Início', id: 'inicio' },
@@ -130,6 +337,10 @@ const handleScroll = () => {
   border.value = window.scrollY > 0 ? 'border' : ''
 }
 
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
 const scrollToSection = (id) => {
   const section = document.getElementById(id)
 
@@ -139,6 +350,8 @@ const scrollToSection = (id) => {
       block: 'start',
     })
   }
+
+  isMenuOpen.value = false
 }
 
 onMounted(() => {

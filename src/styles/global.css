@@ -20,13 +20,34 @@
   --color-border: #343844;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
+  min-width: 320px;
   overflow-x: hidden;
   background-color: var(--color-background);
   color: var(--color-text);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  scroll-margin-top: 72px;
 }

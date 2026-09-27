@@ -38,6 +38,8 @@ import DecorativeSideShapes from './components/DecorativeSideShapes.vue'
 <style scoped>
 .app-shell {
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 </style>
