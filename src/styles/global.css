@@ -1,0 +1,115 @@
+:root {
+  --color-primary: #273da8;
+  --color-primary-text: var(--color-primary);
+  --color-secondary: #4353be;
+  --color-tertiary: #9895ff;
+  --color-on-primary: #ffffff;
+  --color-toggle-track: #dddddd;
+  --color-toggle-active: #333333;
+  --color-toggle-thumb: #ffffff;
+  --color-toggle-icon: #ffffff;
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #202124;
+  --color-muted: #686868;
+  --color-border: #e3e3e3;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --color-primary-text: #b8c4ff;
+  --color-toggle-track: #454a55;
+  --color-toggle-active: #596172;
+  --color-background: #111318;
+  --color-surface: #1b1e26;
+  --color-text: #f1f2f5;
+  --color-muted: #b3b7c2;
+  --color-border: #343844;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.skip-link,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus-visible {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px 14px;
+  clip-path: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary-text);
+  border-radius: 4px;
+  white-space: normal;
+}
+
+.visually-hidden-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 8px 12px;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  scroll-margin-top: 72px;
+}

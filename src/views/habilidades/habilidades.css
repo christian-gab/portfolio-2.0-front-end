@@ -1,0 +1,55 @@
+.main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 96px 20px 40px;
+}
+
+.main h2 {
+  font-size: clamp(2.2rem, 5vw, 3.125rem);
+  font-weight: 600;
+  color: var(--color-primary-text);
+  margin: 0 0 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.grid-habilidades {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(90px, 1fr));
+  gap: 10px;
+  width: min(100%, 1120px);
+  justify-items: center;
+}
+
+.pinia {
+  width: 70px;
+  height: auto;
+}
+
+.devicon-nextjs-plain {
+  color: var(--color-secondary);
+  font-size: 90px;
+}
+
+.devicon-tailwindcss-original {
+  font-size: 90px;
+  color: var(--color-secondary);
+}
+
+@media (max-width: 1023px) {
+  .grid-habilidades {
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-habilidades {
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+  }
+}
