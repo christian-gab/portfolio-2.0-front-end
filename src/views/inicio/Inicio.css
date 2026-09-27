@@ -24,7 +24,7 @@
   width: 220px;
   height: 280px;
   border-radius: 70% 30% 62% 38% / 50% 45% 55% 50%;
-  background: rgba(39, 61, 168, 0.08);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
   transform: rotate(-18deg);
 }
 
@@ -34,7 +34,7 @@
   width: 260px;
   height: 300px;
   border-radius: 38% 62% 55% 45% / 40% 50% 50% 60%;
-  background: rgba(39, 61, 168, 0.06);
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
   transform: rotate(18deg);
 }
 
@@ -44,7 +44,7 @@
   width: 260px;
   height: 180px;
   border-radius: 60% 40% 50% 50% / 65% 35% 65% 35%;
-  background: rgba(67, 83, 190, 0.08);
+  background: color-mix(in srgb, var(--color-secondary) 8%, transparent);
   transform: rotate(-12deg);
 }
 
@@ -54,12 +54,12 @@
   width: 230px;
   height: 170px;
   border-radius: 38% 62% 57% 43% / 52% 43% 57% 48%;
-  background: rgba(67, 83, 190, 0.07);
+  background: color-mix(in srgb, var(--color-secondary) 7%, transparent);
   transform: rotate(18deg);
 }
 
 .destaque {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
 }
 
 .description-me h1 {
@@ -87,6 +87,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 500px);
+  aspect-ratio: 1;
 }
 
 .animation :deep(svg),
@@ -102,15 +103,18 @@
 }
 
 .download-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  outline: none;
-  font-family: 'Poppins';
+  font: inherit;
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
   border-radius: 4px;
   padding: 10px 29px;
   cursor: pointer;
   transition: ease 0.3s;
+  text-decoration: none;
 }
 
 .download-cv:hover {

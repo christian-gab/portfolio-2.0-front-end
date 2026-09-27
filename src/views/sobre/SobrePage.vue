@@ -1,13 +1,19 @@
 <template>
   <div class="main">
     <div class="about-me">
-      <div class="image">
-        <Vue3Lottie width="500px" :animationData="aboutAnimation" :loop="true" />
+      <div class="image" aria-hidden="true">
+        <Vue3Lottie
+          width="500px"
+          :animationData="aboutAnimation"
+          :loop="!prefersReducedMotion"
+          :autoPlay="!prefersReducedMotion"
+          aria-hidden="true"
+        />
       </div>
       <div class="description">
-        <h4>Sobre mim.</h4>
-        <h2>Christian Gabriel</h2>
-        <h3>Desenvolvedor Frontend</h3>
+        <h2 id="sobre-title">Sobre mim.</h2>
+        <h3>Christian Gabriel</h3>
+        <h4>Desenvolvedor Frontend</h4>
         <p>
           Atualmente, atuo em múltiplos projetos como desenvolvedor Frontend, trabalhando no
           desenvolvimento, evolução e modernização de aplicações web. Tenho experiência com Angular,
@@ -20,7 +26,7 @@
             :key="social.name"
             :href="social.href"
             :icon="social.icon"
-            @click="openLink(social.href)"
+            :name="social.name"
           />
         </div>
       </div>
@@ -32,30 +38,10 @@
 import aboutAnimation from '@/assets/animation/aboutAnimation.json'
 import { Vue3Lottie } from 'vue3-lottie'
 import AboutMedias from './components/AboutMedias.vue'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import socialMedias from '@/data/socialMedias'
+import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
 
-const socialMedias = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/christian-gab',
-    icon: faGithub,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/christiangdev',
-    icon: faLinkedin,
-  },
-  {
-    name: 'Email',
-    href: 'https://mail.google.com/mail/?view=cm&to=christiandeveloper123@gmail.com',
-    icon: faEnvelope,
-  },
-]
-
-const openLink = (href) => {
-  window.open(href, '_blank')
-}
+const { prefersReducedMotion } = usePrefersReducedMotion()
 </script>
 
 <style src="/src/views/sobre/sobre.css" scoped></style>

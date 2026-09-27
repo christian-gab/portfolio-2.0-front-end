@@ -1,14 +1,22 @@
 <template>
   <div class="main">
-    <h2>Habilidades</h2>
-    <div class="grid-habiidades">
-      <template v-for="(habilidade, index) in habilidades" :key="index">
+    <h2 id="habilidades-title">Habilidades</h2>
+    <div class="grid-habilidades">
+      <template v-for="habilidade in habilidades" :key="habilidade.name">
         <Habilidade v-if="habilidade.icon" :icon="habilidade.icon" :name="habilidade.name" />
         <Habilidade v-else-if="habilidade.className" :name="habilidade.name">
           <i :class="habilidade.className"></i>
         </Habilidade>
         <Habilidade v-else :name="habilidade.name">
-          <img class="pinia" :src="habilidade.image" :alt="habilidade.alt" />
+          <img
+            class="pinia"
+            :src="habilidade.image"
+            :alt="habilidade.alt"
+            width="319"
+            height="478"
+            loading="lazy"
+            decoding="async"
+          />
         </Habilidade>
       </template>
     </div>

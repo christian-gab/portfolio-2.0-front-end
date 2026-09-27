@@ -1,11 +1,19 @@
 <template>
   <div ref="decorativeRef" class="side-decoration" aria-hidden="true">
     <div class="effect-left">
-      <Vue3Lottie :animationData="sideEffectData" :loop="true" :autoPlay="true" />
+      <Vue3Lottie
+        :animationData="sideEffectData"
+        :loop="!prefersReducedMotion"
+        :autoPlay="!prefersReducedMotion"
+      />
     </div>
 
     <div class="effect-right">
-      <Vue3Lottie :animationData="sideEffectData" :loop="true" :autoPlay="true" />
+      <Vue3Lottie
+        :animationData="sideEffectData"
+        :loop="!prefersReducedMotion"
+        :autoPlay="!prefersReducedMotion"
+      />
     </div>
   </div>
 </template>
@@ -14,8 +22,11 @@
 import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
 import { Vue3Lottie } from 'vue3-lottie'
 import sideEffectData from '@/assets/animation/SideEffect.json'
+import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
 
 const decorativeRef = useTemplateRef('decorativeRef')
+const { prefersReducedMotion } = usePrefersReducedMotion()
+let scrollFrame = undefined
 
 const updateDecoration = () => {
   if (!decorativeRef.value) return
@@ -36,13 +47,25 @@ const updateDecoration = () => {
   decorativeRef.value.style.setProperty('--decoration-opacity', finalOpacity.toFixed(3))
 }
 
+const scheduleDecorationUpdate = () => {
+  if (scrollFrame !== undefined) return
+
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = undefined
+    updateDecoration()
+  })
+}
+
 onMounted(() => {
   updateDecoration()
-  window.addEventListener('scroll', updateDecoration, { passive: true })
+  window.addEventListener('scroll', scheduleDecorationUpdate, { passive: true })
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', updateDecoration)
+  window.removeEventListener('scroll', scheduleDecorationUpdate)
+  if (scrollFrame !== undefined) {
+    cancelAnimationFrame(scrollFrame)
+  }
 })
 </script>
 

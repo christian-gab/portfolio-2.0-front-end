@@ -1,14 +1,17 @@
 <template>
-  <header :class="border">
+  <header :class="border" @keydown.esc.prevent="closeMenu(true)">
     <nav class="desktop-nav" aria-label="Navegação principal">
       <ul>
-        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
-          {{ item.label }}
+        <li v-for="item in menuItems" :key="item.id">
+          <a class="nav-link" :href="`#${item.id}`">
+            {{ item.label }}
+          </a>
         </li>
 
         <li class="theme-toggle">
           <button
             class="toggle"
+            type="button"
             :class="{ active: isDark }"
             @click="toggleTheme"
             aria-label="Alternar tema"
@@ -25,6 +28,7 @@
     </nav>
 
     <button
+      ref="hamburgerButton"
       class="hamburger-button"
       type="button"
       :aria-label="isMenuOpen ? 'Fechar menu' : 'Abrir menu'"
@@ -45,13 +49,16 @@
       v-show="isMenuOpen"
     >
       <ul>
-        <li v-for="item in menuItems" :key="item.id" @click="scrollToSection(item.id)">
-          {{ item.label }}
+        <li v-for="item in menuItems" :key="item.id">
+          <a class="nav-link" :href="`#${item.id}`" @click="closeMenu()">
+            {{ item.label }}
+          </a>
         </li>
 
         <li class="theme-toggle mobile-theme-toggle">
           <button
             class="toggle"
+            type="button"
             :class="{ active: isDark }"
             @click="toggleTheme"
             aria-label="Alternar tema"
@@ -106,15 +113,28 @@ ul {
   padding: 0;
 }
 
-li {
+.nav-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
   font-size: 14px;
   font-weight: 400;
-  cursor: pointer;
+  text-decoration: none;
   white-space: nowrap;
 }
 
-li:hover {
-  color: var(--color-primary);
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-primary-text);
+}
+
+.nav-link:focus-visible,
+.toggle:focus-visible,
+.hamburger-button:focus-visible {
+  outline: 2px solid var(--color-primary-text);
+  outline-offset: 3px;
 }
 
 .theme-toggle {
@@ -128,7 +148,7 @@ li:hover {
   padding: 3px;
   border: none;
   border-radius: 999px;
-  background-color: #ddd;
+  background-color: var(--color-toggle-track);
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease;
@@ -149,9 +169,11 @@ li:hover {
 .icon-moon {
   width: 11px;
   height: 11px;
-  color: #fff;
+  color: var(--color-toggle-icon);
   opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .toggle.active .icon-sun {
@@ -166,7 +188,7 @@ li:hover {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--color-toggle-thumb);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +203,7 @@ li:hover {
 }
 
 .toggle.active {
-  background-color: #333;
+  background-color: var(--color-toggle-active);
 }
 
 .toggle.active .toggle-circle {
@@ -300,6 +322,12 @@ header.border {
     font-size: 14px;
   }
 
+  .mobile-menu .nav-link {
+    width: 100%;
+    min-height: 48px;
+    text-align: left;
+  }
+
   .mobile-menu li:last-child {
     border-bottom: none;
   }
@@ -312,12 +340,13 @@ header.border {
 </style>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useTheme } from '@/composables/useTheme'
 
 const border = ref('')
 const isMenuOpen = ref(false)
+const hamburgerButton = useTemplateRef('hamburgerButton')
 const { isDark, toggleTheme } = useTheme()
 
 const themeIcons = {
@@ -341,20 +370,19 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
-const scrollToSection = (id) => {
-  const section = document.getElementById(id)
-
-  if (section) {
-    section.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
+const closeMenu = async (restoreFocus = false) => {
+  if (!isMenuOpen.value) return
 
   isMenuOpen.value = false
+
+  if (restoreFocus) {
+    await nextTick()
+    hamburgerButton.value?.focus()
+  }
 }
 
 onMounted(() => {
+  handleScroll()
   window.addEventListener('scroll', handleScroll)
 })
 

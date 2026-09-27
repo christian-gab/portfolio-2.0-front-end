@@ -1,5 +1,5 @@
 <template>
-  <a :href="href" target="_blank">
+  <a :href="href" :aria-label="name" target="_blank" rel="noopener noreferrer">
     <div class="container-social-media">
       <font-awesome-icon class="icon" :icon="icon" />
     </div>
@@ -9,12 +9,16 @@
 <script setup>
 defineProps({
   icon: {
-    type: String,
+    type: [Object, Array],
     required: true,
   },
   href: {
     type: String,
-    required: false,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
   },
 })
 </script>
@@ -34,7 +38,7 @@ defineProps({
 }
 
 .icon {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   width: 25px;
   height: 25px;
 }

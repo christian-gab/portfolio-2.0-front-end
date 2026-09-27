@@ -1,10 +1,12 @@
 <template>
   <div class="main">
     <div class="description-me">
-      <h1>Olá, eu sou o <span class="destaque">Christian.</span></h1>
+      <h1 id="inicio-title">Olá, eu sou o <span class="destaque">Christian.</span></h1>
       <p>
         Sou um
-        <span ref="typeTarget" class="destaque"></span>
+        <span ref="typeTarget" class="destaque">{{
+          prefersReducedMotion ? 'desenvolvedor frontend' : ''
+        }}</span>
         com experiência profissional na criação e evolução de aplicações web modernas, utilizando
         Vue, React, Angular, TypeScript, JavaScript e Tailwind CSS. Foco em performance,
         acessibilidade, boas práticas e experiência do usuário.
@@ -16,50 +18,41 @@
           :key="social.name"
           :href="social.href"
           :icon="social.icon"
-          @click="openLink(social.href)"
+          :name="social.name"
         />
       </div>
-      <a href="/public/curriculo.pdf" download="Curriculo Christian Front-End.pdf">
-        <button class="download-cv">Download CV</button>
+      <a class="download-cv" href="/curriculo.pdf" download="Curriculo Christian Front-End.pdf">
+        Download CV
       </a>
     </div>
-    <div class="animation">
-      <Vue3Lottie  :animationData="animationData" :loop="true" />
+    <div class="animation" aria-hidden="true">
+      <Vue3Lottie
+        :animationData="animationData"
+        :loop="!prefersReducedMotion"
+        :autoPlay="!prefersReducedMotion"
+        aria-hidden="true"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import TypeIt from 'typeit'
 import SociaMedia from './components/SociaMedia.vue'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Vue3Lottie } from 'vue3-lottie'
 import animationData from '@/assets/animation/animation.json'
+import socialMedias from '@/data/socialMedias'
+import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
 
 const typeTarget = ref(null)
+const { prefersReducedMotion } = usePrefersReducedMotion()
+let typingAnimation
 
-const socialMedias = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/christian-gab',
-    icon: faGithub,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/christiangdev',
-    icon: faLinkedin,
-  },
-  {
-    name: 'Email',
-    href: 'https://mail.google.com/mail/?view=cm&to=christiandeveloper123@gmail.com',
-    icon: faEnvelope,
-  },
-]
+const startTypingAnimation = () => {
+  if (!typeTarget.value || prefersReducedMotion.value) return
 
-onMounted(() => {
-  new TypeIt(typeTarget.value, {
+  typingAnimation = new TypeIt(typeTarget.value, {
     speed: 100,
     loop: true,
     cursor: true,
@@ -71,11 +64,24 @@ onMounted(() => {
     .pause(5000)
     .delete()
     .go()
+}
+
+onMounted(startTypingAnimation)
+
+watch(prefersReducedMotion, (reducedMotion) => {
+  if (!typeTarget.value) return
+
+  if (reducedMotion) {
+    typingAnimation?.destroy()
+    typingAnimation = undefined
+    typeTarget.value.textContent = 'desenvolvedor frontend'
+  } else {
+    typeTarget.value.textContent = ''
+    startTypingAnimation()
+  }
 })
 
-const openLink = (href) => {
-  window.open(href, '_blank')
-}
+onBeforeUnmount(() => typingAnimation?.destroy())
 </script>
 
 <style scoped src="@/views/inicio/Inicio.css"></style>
