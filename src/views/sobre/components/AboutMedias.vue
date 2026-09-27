@@ -38,7 +38,7 @@ defineProps({
 }
 
 .icon {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   width: 25px;
   height: 25px;
 }

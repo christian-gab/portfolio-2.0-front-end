@@ -26,7 +26,7 @@ defineProps({
 <style scoped>
 .container-social-media {
   border-radius: 4px;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-primary-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@ defineProps({
 }
 
 .icon {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   width: 25px;
   height: 25px;
 }

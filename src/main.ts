@@ -4,7 +4,11 @@ import '@/styles/global.css'
 import { initializeTheme } from './composables/useTheme'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-initializeTheme()
+try {
+  initializeTheme()
+} catch {
+  // Theme initialization is optional; restricted browser APIs must not block rendering.
+}
 
 const app = createApp(App)
 

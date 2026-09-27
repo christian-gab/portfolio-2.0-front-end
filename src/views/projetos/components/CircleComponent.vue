@@ -39,12 +39,12 @@ defineProps({
 }
 
 .circle:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-primary-text);
   outline-offset: 3px;
 }
 
 .active {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-text);
   opacity: 1;
 }
 </style>

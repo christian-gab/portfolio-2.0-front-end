@@ -59,7 +59,7 @@
 }
 
 .destaque {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
 }
 
 .description-me h1 {
@@ -87,6 +87,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 500px);
+  aspect-ratio: 1;
 }
 
 .animation :deep(svg),

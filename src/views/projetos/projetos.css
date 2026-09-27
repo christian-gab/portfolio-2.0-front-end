@@ -26,7 +26,7 @@
 }
 
 .icon {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   height: 30px;
   width: 30px;
 }
@@ -44,9 +44,24 @@
 }
 
 .carousel-control:focus-visible,
-.descricao-projeto button:focus-visible {
-  outline: 2px solid var(--color-primary);
+.descricao-projeto .project-link:focus-visible,
+.autoplay-toggle:focus-visible {
+  outline: 2px solid var(--color-primary-text);
   outline-offset: 3px;
+}
+
+.autoplay-toggle:focus-visible {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  padding: 8px 12px;
+  transform: translateX(-50%);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .circles-components {
@@ -94,9 +109,10 @@
   margin-right: 20px;
 }
 
-.descricao-projeto h1 {
+.descricao-projeto h3 {
   margin: 60px 0px 0px 0px;
   color: var(--color-on-primary);
+  font-size: 2em;
   line-height: 1;
 }
 
@@ -105,11 +121,14 @@
   font-weight: 300;
 }
 
-.descricao-projeto button {
+.descricao-projeto .project-link {
+  width: fit-content;
   border: none;
   outline: none;
   font-family: 'Poppins';
-  background-color: white;
+  font-size: 13.3333px;
+  font-weight: 400;
+  background-color: var(--color-on-primary);
   color: var(--color-primary);
   border-radius: 4px;
   padding: 10px;
@@ -118,9 +137,10 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  text-decoration: none;
 }
 
-.descricao-projeto button:hover {
+.descricao-projeto .project-link:hover {
   transform: scale(1.05);
 }
 
@@ -131,6 +151,7 @@
 }
 
 .projetos-main {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +168,7 @@
 }
 
 .title {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-size: 50px;
   font-weight: 600;
 }
@@ -159,8 +180,6 @@
 .next {
   animation: slideNext 0.5s forwards;
 }
-
-
 
 @media (max-width: 767px) {
   .projetos-main {
@@ -201,7 +220,7 @@
     margin-right: 0;
   }
 
-  .descricao-projeto h1 {
+  .descricao-projeto h3 {
     margin: 0;
     font-size: clamp(1.25rem, 5vw, 1.75rem);
   }
@@ -212,7 +231,8 @@
     line-height: 1.4;
   }
 
-  .descricao-projeto button {
+  .descricao-projeto .project-link {
+    width: 100%;
     gap: 10px;
     padding: 8px 10px;
   }

@@ -1,13 +1,19 @@
 <template>
   <div class="main">
     <div class="about-me">
-      <div class="image">
-        <Vue3Lottie width="500px" :animationData="aboutAnimation" :loop="true" />
+      <div class="image" aria-hidden="true">
+        <Vue3Lottie
+          width="500px"
+          :animationData="aboutAnimation"
+          :loop="!prefersReducedMotion"
+          :autoPlay="!prefersReducedMotion"
+          aria-hidden="true"
+        />
       </div>
       <div class="description">
-        <h4>Sobre mim.</h4>
-        <h2>Christian Gabriel</h2>
-        <h3>Desenvolvedor Frontend</h3>
+        <h2 id="sobre-title">Sobre mim.</h2>
+        <h3>Christian Gabriel</h3>
+        <h4>Desenvolvedor Frontend</h4>
         <p>
           Atualmente, atuo em múltiplos projetos como desenvolvedor Frontend, trabalhando no
           desenvolvimento, evolução e modernização de aplicações web. Tenho experiência com Angular,
@@ -33,6 +39,9 @@ import aboutAnimation from '@/assets/animation/aboutAnimation.json'
 import { Vue3Lottie } from 'vue3-lottie'
 import AboutMedias from './components/AboutMedias.vue'
 import socialMedias from '@/data/socialMedias'
+import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
+
+const { prefersReducedMotion } = usePrefersReducedMotion()
 </script>
 
 <style src="/src/views/sobre/sobre.css" scoped></style>

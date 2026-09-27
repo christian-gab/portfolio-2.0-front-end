@@ -1,7 +1,8 @@
 <template>
+  <label class="visually-hidden" for="contact-message">Descreva sua ideia ou projeto</label>
   <textarea
+    id="contact-message"
     name="message"
-    aria-label="Descreva sua ideia ou projeto"
     placeholder="Descreva sua ideia ou projeto aqui, com todos os detalhes necessários."
     rows="4"
   ></textarea>
@@ -37,8 +38,13 @@ textarea:focus::placeholder {
 }
 
 textarea:focus {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--color-primary-text);
+  color: var(--color-primary-text);
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary-text);
+  outline-offset: 3px;
 }
 
 @media (max-width: 622px) {

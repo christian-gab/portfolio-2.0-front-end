@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 :root {
   --color-primary: #273da8;
+  --color-primary-text: var(--color-primary);
   --color-secondary: #4353be;
   --color-tertiary: #9895ff;
   --color-on-primary: #ffffff;
@@ -18,6 +17,7 @@
 
 :root.dark {
   color-scheme: dark;
+  --color-primary-text: #b8c4ff;
   --color-toggle-track: #454a55;
   --color-toggle-active: #596172;
   --color-background: #111318;
@@ -35,9 +35,58 @@ html {
   scroll-behavior: smooth;
 }
 
+.skip-link,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus-visible {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px 14px;
+  clip-path: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary-text);
+  border-radius: 4px;
+  white-space: normal;
+}
+
+.visually-hidden-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 8px 12px;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

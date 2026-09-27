@@ -1,14 +1,20 @@
 <template>
   <div class="main">
     <div class="contato">
-      <h1>Fale comigo!</h1>
+      <h2 id="contato-title">Fale comigo!</h2>
       <p>
         Ei! Ficou com alguma dúvida ou tem uma proposta? Me conte mais sobre sua ideia, vamos
         conversar!
       </p>
       <div class="email">
-        <InputComponent placeholder="Seu nome" autocomplete="name" />
-        <InputComponent placeholder="Seu e-mail" type="email" autocomplete="email" />
+        <InputComponent id="contact-name" name="name" placeholder="Seu nome" autocomplete="name" />
+        <InputComponent
+          id="contact-email"
+          name="email"
+          placeholder="Seu e-mail"
+          type="email"
+          autocomplete="email"
+        />
       </div>
       <div class="container-textarea">
         <TextAreaComponent />

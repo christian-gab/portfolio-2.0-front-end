@@ -2,11 +2,37 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfólio de Christian Gabriel, desenvolvedor frontend especializado em aplicações web modernas.">
-    <title>Portfólio Christian</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Portfólio Christian">
+    <meta property="og:title" content="Portfólio | Christian Gabriel">
+    <meta property="og:description" content="Portfólio de Christian Gabriel, desenvolvedor frontend especializado em aplicações web modernas.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Portfólio | Christian Gabriel">
+    <meta name="twitter:description" content="Portfólio de Christian Gabriel, desenvolvedor frontend especializado em aplicações web modernas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <script>
+      try {
+        const storedTheme = localStorage.getItem('portfolio-theme')
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+        if (storedTheme === 'dark' || (storedTheme === null && systemPrefersDark)) {
+          document.documentElement.classList.add('dark')
+          document.documentElement.style.colorScheme = 'dark'
+        }
+      } catch {
+        // Apply the default light theme when browser storage or preference APIs are restricted.
+      }
+    </script>
+    <title>Portfólio | Christian Gabriel — Desenvolvedor Frontend</title>
   </head>
   <body>
     <div id="app"></div>

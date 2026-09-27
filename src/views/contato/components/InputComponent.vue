@@ -1,14 +1,24 @@
 <template>
+  <label class="visually-hidden" :for="id">{{ placeholder }}</label>
   <input
+    :id="id"
+    :name="name"
     :placeholder="placeholder"
     :type="type"
     :autocomplete="autocomplete"
-    :aria-label="placeholder"
   />
 </template>
 
 <script setup>
 defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
   placeholder: {
     type: String,
     required: true,
@@ -50,7 +60,12 @@ input::placeholder {
 
 input:focus {
   border-bottom: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
+  color: var(--color-primary-text);
+}
+
+input:focus-visible {
+  outline: 2px solid var(--color-primary-text);
+  outline-offset: 3px;
 }
 
 input:focus::placeholder {

@@ -45,7 +45,7 @@ defineProps({
 }
 
 .container:hover {
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-primary-text);
 }
 
 .content {
@@ -67,7 +67,7 @@ defineProps({
   opacity: 0;
   padding: 7px 12px;
   border-radius: 10px;
-  background: var(--color-primary);
+  background: var(--color-primary-text);
   color: var(--color-on-primary);
   font-size: 11px;
   font-weight: 600;
@@ -87,7 +87,7 @@ defineProps({
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  background: var(--color-primary);
+  background: var(--color-primary-text);
   border-radius: 2px;
 }
 

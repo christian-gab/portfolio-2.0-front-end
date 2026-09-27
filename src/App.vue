@@ -1,27 +1,30 @@
 <template>
   <div class="app-shell">
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
     <DecorativeSideShapes />
     <HeaderComponent />
 
-    <section id="inicio">
-      <InicioPage />
-    </section>
+    <main id="main-content" tabindex="-1">
+      <section id="inicio" aria-labelledby="inicio-title">
+        <InicioPage />
+      </section>
 
-    <section id="sobre">
-      <SobrePage />
-    </section>
+      <section id="sobre" aria-labelledby="sobre-title">
+        <SobrePage />
+      </section>
 
-    <section id="habilidades">
-      <HabilidadesPage />
-    </section>
+      <section id="habilidades" aria-labelledby="habilidades-title">
+        <HabilidadesPage />
+      </section>
 
-    <section id="projetos">
-      <ProjetosPage />
-    </section>
+      <section id="projetos" aria-labelledby="projetos-title">
+        <ProjetosPage />
+      </section>
 
-    <section id="contato">
-      <ContatoPage />
-    </section>
+      <section id="contato" aria-labelledby="contato-title">
+        <ContatoPage />
+      </section>
+    </main>
   </div>
 </template>
 
