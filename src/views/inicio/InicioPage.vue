@@ -24,7 +24,7 @@
       </a>
     </div>
     <div class="animation">
-      <Vue3Lottie width="500px" :animationData="animationData" :loop="true" />
+      <Vue3Lottie  :animationData="animationData" :loop="true" />
     </div>
   </div>
 </template>

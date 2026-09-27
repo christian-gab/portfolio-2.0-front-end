@@ -1,11 +1,13 @@
 .main {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 80px);
+  padding: 96px clamp(20px, 5vw, 80px) 40px;
+  overflow: hidden;
+  background: transparent;
 }
 
 .shape {
@@ -56,51 +58,91 @@
   transform: rotate(18deg);
 }
 
-.destaque{
-    color: var(--color-primary);
+.destaque {
+  color: var(--color-primary);
 }
 
-.description-me h1{
-    margin-bottom: 10px;
-    font-size: 40px;
-    line-height: 1.0;
-    position: relative;
-    z-index: 1;
+.description-me h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
 }
-.description-me p{
-    font-size: 18px;
-    margin: 0;
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 1;
+
+.description-me p {
+  font-size: clamp(1rem, 1.7vw, 1.125rem);
+  margin: 0 0 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .description-me {
-    width: 460px;
-    position: relative;
-    z-index: 1;
+  width: min(100%, 460px);
+  position: relative;
+  z-index: 1;
 }
 
-.download-cv{
-    border: none;
-    outline: none;
-    font-family: 'Poppins';
-    background-color: var(--color-primary);
-    color: white;
-    border-radius: 4px;
-    padding: 10px 29px;
-    cursor: pointer;
-    transition: ease 0.3s;
+.animation {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 500px);
 }
 
-.download-cv:hover{
+.animation :deep(svg),
+.animation :deep(.lottie-container) {
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 767px) {
+  .animation {
+    width: min(100%, 480px);
+  }
+}
+
+.download-cv {
+  border: none;
+  outline: none;
+  font-family: 'Poppins';
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+  padding: 10px 29px;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
+.download-cv:hover {
   background-color: var(--color-secondary);
   transform: scale(1.05);
 }
 
-.social-medias{
-    display: flex;
-    gap: 10px;
-    position: relative;
-    z-index: 1;
+.social-medias {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .main {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 96px;
+  }
+
+  .description-me {
+    width: min(100%, 480px);
+  }
+
+  .social-medias {
+    justify-content: center;
+  }
+
+  .download-cv {
+    width: 100%;
+    max-width: 220px;
+  }
 }

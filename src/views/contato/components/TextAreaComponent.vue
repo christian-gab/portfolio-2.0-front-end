@@ -6,7 +6,7 @@
 textarea {
   font-weight: 300;
   outline: none;
-  padding: 10px 0 0 0;
+  padding: 10px 0 0px 0;
   border: none;
   border-bottom: 1px solid var(--color-border);
   width: 100%;
@@ -18,7 +18,7 @@ textarea {
   font-family: Poppins;
   transition: 0.2s ease-in-out;
   font-size: 16px;
-
+  overflow: hidden;
 }
 
 textarea::placeholder {
@@ -38,5 +38,10 @@ textarea:focus {
   color: var(--color-primary);
 }
 
+@media (max-width: 622px) {
+  textarea {
+    padding-bottom: 10px;
+  }
+}
 
 </style>

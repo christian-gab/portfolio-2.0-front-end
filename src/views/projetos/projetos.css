@@ -12,7 +12,8 @@
 
 .projetos {
   background-color: var(--color-primary);
-  width: 900px;
+  width: 100%;
+  max-width: 900px;
   height: 400px;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -46,6 +47,7 @@
   border-radius: 4px;
   margin-left: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+  overflow: hidden;
 }
 
 .image-project-small {
@@ -58,6 +60,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.image-project :deep(.lottie-container),
+.image-project :deep(svg) {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-project-small :deep(svg) {
+  transform: scale(0.65) !important;
+  transform-origin: center;
 }
 
 .descricao-projeto {
@@ -106,7 +122,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  width: min(100%, 1040px);
+  gap: clamp(8px, 2vw, 20px);
+  padding: 0 clamp(8px, 2vw, 16px);
+  box-sizing: border-box;
+}
+
+.container-projetos {
+  flex: 1 1 900px;
+  max-width: 900px;
+  min-width: 0;
 }
 
 .title {
@@ -121,6 +146,64 @@
 
 .next {
   animation: slideNext 0.5s forwards;
+}
+
+
+
+@media (max-width: 767px) {
+  .projetos-main {
+    gap: clamp(10px, 2.5vw, 16px);
+    padding-inline: clamp(16px, 5vw, 28px);
+  }
+
+  .projetos {
+    height: auto;
+    padding: clamp(14px, 4vw, 20px);
+    flex-direction: column;
+    gap: clamp(8px, 2vw, 14px);
+  }
+
+  .image-project,
+  .image-project-small {
+    width: 100%;
+    height: clamp(160px, 42vw, 240px);
+    flex: 0 0 auto;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  .image-project-small :deep(svg) {
+    transform: scale(0.72) !important;
+    transform-origin: center;
+  }
+
+  .image-project-cards :deep(svg) {
+    transform: scale(0.82) !important;
+    transform-origin: center;
+  }
+
+  .descricao-projeto {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    margin-right: 0;
+  }
+
+  .descricao-projeto h1 {
+    margin: 0;
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .descricao-projeto p {
+    margin: 12px 0;
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+    line-height: 1.4;
+  }
+
+  .descricao-projeto button {
+    gap: 10px;
+    padding: 8px 10px;
+  }
 }
 
 @keyframes slidePrev {

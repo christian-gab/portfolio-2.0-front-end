@@ -12,12 +12,12 @@ defineProps({
 </script>
 
 <style scoped>
-input{
+input {
   font-weight: 300;
   outline: none;
   border: none;
   border-bottom: 1px solid var(--color-border);
-  width: 50%;
+  width: 100%;
   font-size: 15px;
   padding-bottom: 10px;
   color: var(--color-text);
@@ -27,7 +27,7 @@ input{
   font-size: 16px;
 }
 
-input::placeholder{
+input::placeholder {
   font-family: Poppins;
   color: var(--color-muted);
   font-weight: 300;
@@ -37,12 +37,11 @@ input::placeholder{
 }
 
 input:focus {
-  border-bottom: 1px solid  var(--color-secondary);
+  border-bottom: 1px solid var(--color-secondary);
   color: var(--color-secondary);
 }
 
-input:focus::placeholder{
+input:focus::placeholder {
   opacity: 0;
 }
-
 </style>
