@@ -42,6 +42,7 @@
     </button>
 
     <nav
+      ref="mobileMenu"
       id="mobile-navigation"
       class="mobile-menu"
       :class="{ open: isMenuOpen }"
@@ -314,17 +315,20 @@ header.border {
   }
 
   .mobile-menu li {
-    display: flex;
-    align-items: center;
+    display: block;
     min-height: 48px;
-    padding: 0 16px;
+    padding: 0;
     border-bottom: 1px solid var(--color-border);
     font-size: 14px;
   }
 
   .mobile-menu .nav-link {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     width: 100%;
     min-height: 48px;
+    padding-inline: 16px;
     text-align: left;
   }
 
@@ -332,8 +336,13 @@ header.border {
     border-bottom: none;
   }
 
-  .mobile-theme-toggle {
+  .mobile-menu .mobile-theme-toggle {
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
     padding: 12px 16px;
   }
 }
@@ -347,6 +356,7 @@ import { useTheme } from '@/composables/useTheme'
 const border = ref('')
 const isMenuOpen = ref(false)
 const hamburgerButton = useTemplateRef('hamburgerButton')
+const mobileMenu = useTemplateRef('mobileMenu')
 const { isDark, toggleTheme } = useTheme()
 
 const themeIcons = {
@@ -364,6 +374,19 @@ const menuItems = [
 
 const handleScroll = () => {
   border.value = window.scrollY > 0 ? 'border' : ''
+}
+
+const handleOutsidePointerDown = (event) => {
+  const target = event.target
+
+  if (
+    isMenuOpen.value &&
+    target instanceof Node &&
+    !mobileMenu.value?.contains(target) &&
+    !hamburgerButton.value?.contains(target)
+  ) {
+    closeMenu()
+  }
 }
 
 const toggleMenu = () => {
@@ -384,9 +407,11 @@ const closeMenu = async (restoreFocus = false) => {
 onMounted(() => {
   handleScroll()
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('pointerdown', handleOutsidePointerDown)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('pointerdown', handleOutsidePointerDown)
 })
 </script>

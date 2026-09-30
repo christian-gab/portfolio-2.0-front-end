@@ -98,7 +98,7 @@
 
 @media (max-width: 767px) {
   .animation {
-    width: min(100%, 480px);
+    display: none;
   }
 }
 
