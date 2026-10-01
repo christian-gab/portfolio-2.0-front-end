@@ -5,8 +5,21 @@
     name="message"
     placeholder="Descreva sua ideia ou projeto aqui, com todos os detalhes necessários."
     rows="4"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
   ></textarea>
 </template>
+
+<script setup>
+defineProps({
+  modelValue: {
+    type: String,
+    default: '',
+  },
+})
+
+defineEmits(['update:modelValue'])
+</script>
 
 <style scoped>
 textarea {
