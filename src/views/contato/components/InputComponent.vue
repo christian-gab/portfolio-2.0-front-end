@@ -6,6 +6,8 @@
     :placeholder="placeholder"
     :type="type"
     :autocomplete="autocomplete"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
@@ -31,7 +33,13 @@ defineProps({
     type: String,
     default: 'off',
   },
+  modelValue: {
+    type: String,
+    default: '',
+  },
 })
+
+defineEmits(['update:modelValue'])
 </script>
 
 <style scoped>
